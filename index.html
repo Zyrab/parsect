@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>SVG Parser</title>
+</head>
+<link rel="stylesheet" href="styles.css">
+<body>
+    <input type="file" id="svgInput" accept=".svg" />
+    <div id="controls">
+        <button id="clearCanvas">Clear Canvas</button>
+        <h2>Add Colliders</h2>
+        <div id="colliders">
+            <button id="rect">rectangle</button>
+            <button id="arc">circle</button>
+            <button id="line">line</button>
+            <button id="triangle">triangle</button>
+        </div>
+    </div>
+    <div id="container">
+        <div id="svgContainer"></div>
+        <div id="canvasContainer">
+            <canvas id="canvas"></canvas>
+        </div>
+        <pre id="output"></pre>
+    </div>
+    <script type="module" src="/src/index.js">
+    </script>
+</body>
+
+</html>
