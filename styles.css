@@ -10,7 +10,6 @@
 #svgContainer {
   display: flex;
   flex-wrap: wrap;
-  width: 38rem;
   gap: 1rem;
   padding: 1rem;
   background-color: antiquewhite;
@@ -18,13 +17,13 @@
 
 .svgShape {
   background-color: white;
-  width: 17rem;
-  height: 17rem;
+  width: 3rem;
+  height: 3rem;
 }
 
 #canvasContainer {
   background-color: antiquewhite;
-  width: 38rem;
+  width: 60rem;
 }
 
 #output {

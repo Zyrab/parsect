@@ -1,13 +1,13 @@
 const drawShape = (ctx, object) => {
   const { shapes, center } = object;
-
   if (center) {
     ctx.save();
     ctx.translate(
-      (ctx.canvas.width - center.x * 5) / 2,
-      (ctx.canvas.height - center.y * 5) / 2
+      (ctx.canvas.width - center.x * 8) / 2,
+      (ctx.canvas.height - center.y * 8) / 2
     );
-    ctx.scale(5, 5);
+
+    ctx.scale(8, 8);
   }
 
   for (const shape of shapes) {
