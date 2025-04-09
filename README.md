@@ -35,3 +35,66 @@ For now, clone or copy the repo:
 
 ```bash
 git clone https://github.com/Zyrab/Parsect.git
+```
+
+🚀 Usage
+js
+Copy code
+import { parseSVG, convertToPath2D } from './parsect/index.js'
+
+// Your raw SVG string
+const raw = `<svg viewBox="...">...</svg>`
+
+// Step 1: Parse it
+const json = parseSVG(raw)
+
+// Step 2: Draw it
+convertToPath2D(json, canvasContext)
+🧪 Example
+Coming soon: A full demo repo with live visual rendering and dev tools.
+Until then, check out the /examples folder for sample input and output.
+
+🗂 Project Structure
+bash
+Copy code
+/parsect
+  ├── parser/         # SVG -> JSON converter
+  ├── renderer/       # JSON -> Canvas Path2D
+  ├── debug/          # Utilities to visualize each shape separately
+  └── utils/          # Style parsing, gradient handling, etc.
+🔮 Roadmap
+ Add <g> group + transform support
+
+ Improve gradient fidelity + edge cases
+
+ Optimize merging logic for large SVGs
+
+ Create web-based visual inspector
+
+ Publish to NPM
+
+🛠 Built With
+JavaScript (vanilla)
+
+Canvas API
+
+Passion for visuals and structured chaos
+
+🙋‍♂️ Who Made This?
+Hi, I’m Zura.
+I build tools, engines, and educational stuff—sometimes for kids, sometimes for devs like you.
+This project is part of a larger effort to build SVecter: a 2D canvas engine with SVG editing support.
+
+Check out:
+
+🌐 zyrab.dev
+
+📚 Blogs
+
+🐛 Unusual Bugs
+
+📬 Contributing
+Pull requests are welcome. If you find bugs, weird edge cases, or have ideas to improve the structure or API, feel free to open an issue or PR.
+Keep it clean. Keep it composable. Keep it fun.
+
+
