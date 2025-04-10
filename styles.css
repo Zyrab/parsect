@@ -24,6 +24,7 @@
 #canvasContainer {
   background-color: antiquewhite;
   width: 60rem;
+  height: 60rem;
 }
 
 #output {
