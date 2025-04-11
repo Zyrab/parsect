@@ -43,8 +43,9 @@ const toPath2D = (shapeData) => {
     } else if (p.polygon) {
       let poly = p.polygon;
       path = new Path2D();
-      path.moveTo(poly.points[0].x, poly.points[0].y);
-      poly.points.slice(1).forEach((pt) => path.lineTo(pt.x, pt.y)); // Polygon element
+      path.moveTo(poly.points[0][0], poly.points[0][1]);
+      poly.points.slice(1).forEach((pt) => path.lineTo(pt[0], pt[1])); // Polygon element
+
       path.closePath();
     }
 
