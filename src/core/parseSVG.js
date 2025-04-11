@@ -1,3 +1,5 @@
+import { flattenShapes } from "../utils/svgUtils.js";
+
 /**
  * Parses an SVG string into its viewBox and shapes.
  * @param {string} svgText - The raw SVG markup as a string.
@@ -17,10 +19,9 @@ export default function parseSVG(svgText) {
     // Extract the root <svg> element and its 'viewBox' attribute
     const svg = doc.children[0];
     const viewBox = svg.getAttribute("viewBox");
-
     // Collect all child elements (shapes) of the SVG
-    const shapes = Array.from(svg.children);
 
+    const shapes = flattenShapes(Array.from(svg.children));
     // Return an object containing the viewBox and an array of shapes
     return { viewBox, shapes };
   } catch (error) {

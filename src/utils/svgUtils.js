@@ -1,4 +1,22 @@
 /**
+ * flattens an array of svg elements into a single array
+ * @param {Array} elements - an array of svg elements
+ * @returns  {Array} an array of svg elements
+ */
+
+export function flattenShapes(elements) {
+  const result = [];
+  for (const el of elements) {
+    if (el.tagName.toLowerCase() === "g") {
+      result.push(...flattenShapes(Array.from(el.children)));
+    } else {
+      result.push(el);
+    }
+  }
+  return result;
+}
+
+/**
  * Extracts the relevant attributes for a given SVG shape.
  *
  * @param {Element} element - The SVG shape element (e.g., circle, rect, path).
@@ -58,24 +76,45 @@ export function getStyleAttributes(element) {
     "fill",
     "stroke",
     "stroke-width",
-    // 'opacity',
-    // 'transform',
-    // 'clip-path',
+    "opacity",
+    "transform",
+    "clip-path",
   ];
   const styles = {};
+
+  // Parse inline style attribute and merge
+  const inlineStyle = element.getAttribute("style");
+  if (inlineStyle) {
+    const styleObject = Object.fromEntries(
+      inlineStyle
+        .split(";")
+        .filter(Boolean)
+        .map((s) => s.split(":").map((part) => part.trim()))
+    );
+    Object.assign(styles, styleObject);
+  }
+
+  // Handle normal attributes and gradient references
   attributes.forEach((attr) => {
     const value = element.getAttribute(attr);
-    if (value === "none" || !value) return;
+    if (!value || value === "none") return;
+
     if (value.startsWith("url(")) {
       const gradientId = value.match(/#(.*)\)/)?.[1];
       if (gradientId) {
         const gradient = element.ownerDocument.getElementById(gradientId);
-        styles[attr] = parseGradient(gradient);
+        if (gradient) {
+          styles[attr] = parseGradient(gradient); // your gradient parser
+        }
       }
-      return;
+    } else {
+      // Don’t overwrite existing inline styles unless not already set
+      if (!styles.hasOwnProperty(attr)) {
+        styles[attr] = value;
+      }
     }
-    if (value) styles[attr] = value;
   });
+
   return styles;
 }
 
