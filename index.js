@@ -1,5 +1,4 @@
 import parseSVG from "./src/core/parseSVG.js";
-import toJSON from "./src/core/toJSON.js";
 
 import displaySvgShapes from "./src/ui/displaySvgShapes.js";
 import displayCanvasShapes from "./src/ui/displayCanvasShapes.js";
@@ -18,11 +17,11 @@ svgInput.addEventListener("change", async function (e) {
     return;
   }
   const svgText = await file.text();
-  const svgNode = parseSVG(svgText);
+  const { viewBox, paths, shapes } = parseSVG(svgText);
 
-  const parsedShapes = toJSON(svgNode);
+  // const parsedShapes = toJSON(svgNode);
 
-  displaySvgShapes(svgNode, svgContainer);
-  displayCanvasShapes(parsedShapes);
-  displayJSON(output, parsedShapes);
+  displaySvgShapes({ shapes, viewBox }, svgContainer);
+  displayCanvasShapes(paths, viewBox);
+  displayJSON(output, paths);
 });
