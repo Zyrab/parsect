@@ -10,16 +10,15 @@ It reads raw SVG markup, parses all shapes and styles, and produces a JSON repre
 
 - Parses SVG strings or files into structured JSON
 - Supports common shape types: `path`, `rect`, `circle`, `line`, `ellipse`, `polygon`, `polyline`
-- Handles styles like `fill`, `stroke`, `opacity`, gradients (linear/radial)
+- Handles styles like `fill`, `stroke`, `opacity`, gradients (linear)
 - Converts each shape into Canvas-friendly `Path2D` commands
 - Includes a debug view for visualizing shapes individually
-- Allows grouping and merging of similar shapes (e.g. same fill/stroke) to reduce draw calls
 
 ---
 
 ## 🧠 Why I Built It
 
-I wanted to use SVG art in a canvas-based game but I needed full control over how things are drawn, styled, optimized, and eventually *edited*.  
+I wanted to use SVG art in a canvas-based game but I needed full control over how things are drawn, styled, optimized, and eventually _edited_.  
 SVG is great, but canvas is faster for interactive environments.
 
 So instead of relying on black-box libraries, I wrote my own parser:  
@@ -38,18 +37,23 @@ git clone https://github.com/Zyrab/Parsect.git
 ```
 
 🚀 Usage
-js
-Copy code
-import { parseSVG, convertToPath2D } from './parsect/index.js'
+
+```js
+import { parseSVG, toPath2D, drawShape } from "./parsect/index.js";
 
 // Your raw SVG string
-const raw = `<svg viewBox="...">...</svg>`
+const raw = `<svg viewBox="...">...</svg>`;
 
 // Step 1: Parse it
-const json = parseSVG(raw)
+const { paths, viewbox } = parseSVG(raw);
 
-// Step 2: Draw it
-convertToPath2D(json, canvasContext)
+// Step 2: convert and cache paths and stylings
+const shape = toPath2D({ path, viewbox });
+
+// step 3: in canvas u can draw using
+drawShape(ctx, shape);
+```
+
 🧪 Example
 Coming soon: A full demo repo with live visual rendering and dev tools.
 Until then, check out the /examples folder for sample input and output.
@@ -58,20 +62,20 @@ Until then, check out the /examples folder for sample input and output.
 bash
 Copy code
 /parsect
-  ├── parser/         # SVG -> JSON converter
-  ├── renderer/       # JSON -> Canvas Path2D
-  ├── debug/          # Utilities to visualize each shape separately
-  └── utils/          # Style parsing, gradient handling, etc.
+├── parser/ # SVG -> JSON converter
+├── renderer/ # JSON -> Canvas Path2D
+├── debug/ # Utilities to visualize each shape separately
+└── utils/ # Style parsing, gradient handling, etc.
 🔮 Roadmap
- Add <g> group + transform support
+Add <g> group + transform support
 
- Improve gradient fidelity + edge cases
+Improve gradient fidelity + edge cases
 
- Optimize merging logic for large SVGs
+Optimize merging logic for large SVGs
 
- Create web-based visual inspector
+Create web-based visual inspector
 
- Publish to NPM
+Publish to NPM
 
 🛠 Built With
 JavaScript (vanilla)
@@ -96,5 +100,3 @@ Check out:
 📬 Contributing
 Pull requests are welcome. If you find bugs, weird edge cases, or have ideas to improve the structure or API, feel free to open an issue or PR.
 Keep it clean. Keep it composable. Keep it fun.
-
-
