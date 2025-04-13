@@ -1,5 +1,5 @@
-import { flattenShapes } from "../utils/svgUtils.js";
-
+import convertShapesToPaths from "./convertShapesToPaths.js";
+import flattenShapes from "./flattenShapes.js";
 /**
  * Parses an SVG string into its viewBox and shapes.
  * @param {string} svgText - The raw SVG markup as a string.
@@ -22,8 +22,10 @@ export default function parseSVG(svgText) {
     // Collect all child elements (shapes) of the SVG
 
     const shapes = flattenShapes(Array.from(svg.children));
+    const paths = convertShapesToPaths(shapes, viewBox);
+
     // Return an object containing the viewBox and an array of shapes
-    return { viewBox, shapes };
+    return { viewBox, shapes, paths };
   } catch (error) {
     // Log error message if the SVG parsing fails
     console.error("Error parsing SVG:", error.message);
