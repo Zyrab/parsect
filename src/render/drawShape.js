@@ -13,10 +13,10 @@ const drawShape = (ctx, object) => {
   if (center) {
     ctx.save();
     ctx.translate(
-      (ctx.canvas.width - center.x * 8) / 2, // Center horizontally
-      (ctx.canvas.height - center.y * 8) / 2 // Center vertically
+      (ctx.canvas.width - center.x * 1) / 2, // Center horizontally
+      (ctx.canvas.height - center.y * 1) / 2 // Center vertically
     );
-    ctx.scale(8, 8); // Apply scaling factor of 8
+    ctx.scale(1, 1); // Apply scaling factor of 8
   }
 
   // Loop through each shape and draw it with its respective styles
@@ -63,13 +63,14 @@ const applyGradient = (ctx, grad) => {
   if (grad.type === "linear") {
     const { x1 = 0, y1 = 0, x2 = 100, y2 = 100, stops } = grad;
     const gradient = ctx.createLinearGradient(x1, y1, x2, y2);
-    stops.forEach((stop) => gradient.addColorStop(stop.off, stop.clr));
+    stops.forEach((stop) => gradient.addColorStop(stop.offset, stop.color));
     return gradient;
   }
 
   // Handle radial gradients
   if (grad.type === "radial") {
-    const { cx, cy, r1, r2, stops } = grad;
+    return console.warn("Radial gradient not supported yet.");
+    const { cx, cy, r, r2, stops } = grad;
     const gradient = ctx.createRadialGradient(cx, cy, r1, cx, cy, r2);
     stops.forEach((stop) => gradient.addColorStop(stop.offset, stop.color));
     return gradient;
