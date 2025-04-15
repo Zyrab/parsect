@@ -1,6 +1,6 @@
 import { Domo } from "../../lib/domo/index.js";
 
-export default function createButton(text, icon, onClick, fontSize = "2rem") {
+export default function createButton(text, icon, onClick, fontSize = "1rem") {
   return new Domo("button")
     .cls("button")
     .css({
