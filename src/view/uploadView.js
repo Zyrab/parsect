@@ -2,6 +2,19 @@ import { Domo } from "../../lib/domo/index.js";
 import createButton from "../ui/button.js";
 
 export default function createUploadView(getFile) {
+  function handleDragOver(e, show = true, drop = false) {
+    e.preventDefault();
+    contentWrapper.css({
+      backgroundColor: show ? "var(--color-hover)" : "transparent",
+      opacity: show ? 0.8 : 1,
+    });
+    dropZoneText.css({ display: show ? "block" : "none" });
+    if (drop) {
+      const file = e.dataTransfer.files[0];
+      getFile(file);
+    }
+  }
+
   const fileInput = new Domo("input")
     .attr({ type: "file", accept: ".svg" })
     .css({ display: "none" })
@@ -15,18 +28,7 @@ export default function createUploadView(getFile) {
 
   const contentWrapper = new Domo().css(styles.contentWrapper);
   const dropZoneText = new Domo("p").txt("Drop !").css(styles.dropZoneText);
-  function handleDragOver(e, show = true, drop = false) {
-    e.preventDefault();
-    contentWrapper.css({
-      backgroundColor: show ? "var(--color-hover)" : "transparent",
-      opacity: show ? 0.8 : 1,
-    });
-    dropZoneText.css({ display: show ? "block" : "none" });
-    if (drop) {
-      const file = e.dataTransfer.files[0];
-      getFile(file);
-    }
-  }
+
   return new Domo()
     .cls("view")
     .css(styles.view)
@@ -34,7 +36,7 @@ export default function createUploadView(getFile) {
       contentWrapper
         .chld([
           fileInput,
-          createButton("Open SVG", "upload_2", () => fileInput.click()),
+          createButton("Open SVG", "upload_2", () => fileInput.click(), "2rem"),
           new Domo("p")
             .txt("or Drop it Here")
             .css({ color: "var(--color-accent)", fontSize: "1.5rem" })
