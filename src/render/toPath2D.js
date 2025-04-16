@@ -8,14 +8,14 @@
  */
 const toPath2D = (shapeData) => {
   const shapes = []; // Array to store cached shapes
-  let center = { x: 0, y: 0 }; // Default center
+  let dims = { w: 0, h: 0 }; // Default dimensions = { x: 0, y: 0 }; // Default center
   shapeData.forEach((p) => {
     let path = null; // Initialize path variable for each shape
 
     // Set the center based on SVG width and height
     if (p.svg) {
-      center.x = p.svg.width;
-      center.y = p.svg.height;
+      dims.w = p.svg.width;
+      dims.h = p.svg.height;
       return; // Skip this iteration as it's the svg container
     }
 
@@ -54,7 +54,7 @@ const toPath2D = (shapeData) => {
     }
   });
 
-  return { shapes, center }; // Return the cached shapes and the center of the SVG
+  return { shapes, dims }; // Return the cached shapes and the center of the SVG
 };
 
 export default toPath2D;

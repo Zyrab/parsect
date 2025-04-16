@@ -6,19 +6,7 @@
  * @param {Array} object.shapes - Array of shape objects containing path data and style information.
  * @param {Object} object.center - The center point of the SVG (width, height).
  */
-const drawShape = (ctx, object) => {
-  const { shapes, center } = object;
-
-  // If center data exists, adjust drawing position to center the SVG on the canvas
-  if (center) {
-    ctx.save();
-    ctx.translate(
-      (ctx.canvas.width - center.x * 1) / 2, // Center horizontally
-      (ctx.canvas.height - center.y * 1) / 2 // Center vertically
-    );
-    ctx.scale(1, 1); // Apply scaling factor of 8
-  }
-
+const drawShape = (ctx, shapes) => {
   // Loop through each shape and draw it with its respective styles
   for (const shape of shapes) {
     // Determine the fill and stroke styles (solid color or gradient)
@@ -46,7 +34,6 @@ const drawShape = (ctx, object) => {
   }
 
   // Restore the context to its original state if center was used
-  if (center) ctx.restore();
 };
 
 /**
