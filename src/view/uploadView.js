@@ -1,4 +1,4 @@
-import { Domo } from "../../lib/domo/index.js";
+import { Domo } from "@zyrab/domo";
 import createButton from "../ui/button.js";
 
 export default function createUploadView(getFile) {
@@ -15,29 +15,27 @@ export default function createUploadView(getFile) {
     }
   }
 
-  const fileInput = new Domo("input")
+  const fileInput = Domo("input")
     .attr({ type: "file", accept: ".svg" })
     .css({ display: "none" })
-    .on({
-      change: (e) => {
-        const file = e.target.files[0];
-        getFile(file);
-      },
+    .on("change", (e) => {
+      const file = e.target.files[0];
+      getFile(file);
     })
     .build();
 
-  const contentWrapper = new Domo().css(styles.contentWrapper);
-  const dropZoneText = new Domo("p").txt("Drop !").css(styles.dropZoneText);
+  const contentWrapper = Domo().css(styles.contentWrapper);
+  const dropZoneText = Domo("p").txt("Drop !").css(styles.dropZoneText);
 
-  return new Domo()
+  return Domo()
     .cls("view")
     .css(styles.view)
-    .chld([
+    .child([
       contentWrapper
-        .chld([
+        .child([
           fileInput,
           createButton("Open SVG", "upload_2", () => fileInput.click(), "2rem"),
-          new Domo("p")
+          Domo("p")
             .txt("or Drop it Here")
             .css({ color: "var(--color-accent)", fontSize: "1.5rem" })
             .build(),
@@ -45,12 +43,10 @@ export default function createUploadView(getFile) {
         .build(),
       dropZoneText.build(),
     ])
-    .on({
-      dragenter: handleDragOver,
-      dragover: handleDragOver,
-      dragleave: (e) => handleDragOver(e, false),
-      drop: (e) => handleDragOver(e, false, true),
-    })
+    .on("dragenter", handleDragOver)
+    .on("dragover", handleDragOver)
+    .on("dragleave", (e) => handleDragOver(e, false))
+    .on("drop", (e) => handleDragOver(e, false, true))
     .build();
 }
 

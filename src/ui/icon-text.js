@@ -1,11 +1,11 @@
-import { Domo } from "../../lib/domo/index.js";
+import { Domo } from "@zyrab/domo";
 
 export default function createIconText(icon, text) {
-  return new Domo()
+  return Domo()
     .css(styles.wrapper)
-    .chld([
-      new Domo("span").cls("material-symbols-outlined").txt(icon).build(),
-      new Domo("p").css(styles.text).txt(text).build(),
+    .child([
+      Domo("span").cls("material-symbols-outlined").txt(icon).build(),
+      Domo("p").css(styles.text).txt(text).build(),
     ])
     .build();
 }

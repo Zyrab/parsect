@@ -1,4 +1,4 @@
-import { Domo } from "../../lib/domo/index.js";
+import { Domo } from "@zyrab/domo";
 import parseSVG from "../parser/parseSVG.js";
 
 import createUploadView from "./UploadView.js";
@@ -6,7 +6,10 @@ import createLoader from "../ui/loader.js";
 import createDisplayView from "./displayView.js";
 
 export default function createAppView() {
-  const view = new Domo().css(styles.view).chld([createUploadView(getFile)]);
+  const view = Domo()
+    .css(styles.view)
+    .child([createUploadView(getFile)]);
+
   async function getFile(file) {
     const fileName = file.name.replace(/\.[^/.]+$/, "");
 
@@ -15,16 +18,16 @@ export default function createAppView() {
       console.log("Please upload a valid SVG file.");
       return;
     }
-    view.clear().chld([createLoader()]);
+    view.clear().child([createLoader()]);
     const result = parseSVG(svgText);
-    view.clear().chld([createDisplayView(result, fileName)]);
+    view.clear().child([createDisplayView(result, fileName, getFile)]);
   }
   return view.build();
 }
 
 const styles = {
   view: {
-    height: "100%",
+    height: "95%",
     width: "100%",
     display: "flex",
     flexDirection: "column",

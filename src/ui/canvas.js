@@ -1,24 +1,23 @@
-import { Domo } from "../../lib/domo/index.js";
+import { Domo } from "@zyrab/domo";
 
 import toPath2D from "../render/toPath2D.js";
 import drawShape from "../render/drawShape.js";
 
 export default function createCanvasShapes(shapesJson) {
-  const canvas = new Domo("canvas").id("canvas");
-  const view = new Domo().css({
+  const canvas = Domo("canvas").id("canvas");
+  const view = Domo().css({
     width: "60%",
-    height: "80%",
+    height: "100%",
   });
 
   requestAnimationFrame(() => initCanvas(canvas.element, shapesJson));
 
-  return view.chld([canvas.build()]).build();
+  return view.child([canvas.build()]).build();
 }
 
 function initCanvas(canvas, shapesJson) {
   const ctx = canvas.getContext("2d");
   const dpr = window.devicePixelRatio || 1;
-  console.log(dpr);
   canvas.width = canvas.parentElement.offsetWidth * dpr;
   canvas.height = canvas.parentElement.offsetHeight * dpr;
 
@@ -26,8 +25,7 @@ function initCanvas(canvas, shapesJson) {
   const { dims, shapes } = toPath2D(shapesJson);
 
   drawGrid(ctx);
-  const scale = canvas.width / (dims.w * 2);
-  console.log(scale);
+  const scale = canvas.width / (dims.w * 3);
   ctx.save();
   ctx.translate(
     (ctx.canvas.width - dims.w * scale) / 2,

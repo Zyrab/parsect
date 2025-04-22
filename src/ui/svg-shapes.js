@@ -1,19 +1,19 @@
-import { Domo } from "../../lib/domo/index.js";
+import { Domo, DSVG } from "@zyrab/domo";
 import createIconText from "./icon-text.js";
 
 export default function createSvgShapes({ viewBox, shapes }) {
-  return new Domo()
+  return Domo()
     .css(styles.container)
-    .chld([
+    .child([
       createIconText("category", "Shapes Inspector"),
-      new Domo()
+      Domo()
         .css(styles.svgWrapper)
-        .chld([
+        .child([
           shapes.map((shape) => {
-            return new Domo("svg", "http://www.w3.org/2000/svg")
+            return DSVG("svg", "http://www.w3.org/2000/svg")
               .css(styles.svg)
               .attr({ viewBox })
-              .chld([shape.cloneNode(true)])
+              .child([shape.cloneNode(true)])
               .build();
           }),
         ])
@@ -25,7 +25,7 @@ export default function createSvgShapes({ viewBox, shapes }) {
 const styles = {
   container: {
     width: "24%",
-    height: "80%",
+    height: "100%",
     padding: "0.4rem",
     gap: "0.4rem",
     display: "flex",

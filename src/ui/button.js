@@ -1,7 +1,6 @@
-import { Domo } from "../../lib/domo/index.js";
-
+import { Domo } from "@zyrab/domo";
 export default function createButton(text, icon, onClick, fontSize = "1rem") {
-  return new Domo("button")
+  return Domo("button")
     .cls("button")
     .css({
       display: "flex",
@@ -15,14 +14,14 @@ export default function createButton(text, icon, onClick, fontSize = "1rem") {
       color: "var(--color-secondary)",
       border: "2px solid var(--color-tertiary)",
     })
-    .chld([
-      new Domo("span")
+    .child([
+      Domo("span")
         .cls("material-symbols-outlined")
         .css({ fontSize, color: "var(--color-tertiary)" })
         .txt(icon)
         .build(),
-      new Domo("p").css({ fontSize }).txt(text).build(),
+      Domo("p").css({ fontSize }).txt(text).build(),
     ])
-    .on({ click: onClick })
+    .on("click", onClick)
     .build();
 }

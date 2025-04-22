@@ -1,22 +1,23 @@
-import { Domo } from "../../lib/domo/index.js";
+import { Domo } from "@zyrab/domo";
 import createSvgShapes from "../ui/svg-shapes.js";
 import createCanvasShapes from "../ui/canvas.js";
 import createInspector from "../ui/inspector.js";
 
 export default function createDisplayView(
   { viewBox, paths, shapes },
-  fileName
+  fileName,
+  getFile
 ) {
-  const view = new Domo()
+  const view = Domo()
     .css({
       height: "100%",
       width: "100%",
       display: "flex",
     })
-    .chld([
+    .child([
       createSvgShapes({ viewBox, shapes }),
       createCanvasShapes(paths),
-      createInspector(paths, fileName),
+      createInspector(paths, fileName, getFile),
     ]);
 
   return view.build();

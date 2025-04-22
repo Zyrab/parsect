@@ -1,4 +1,4 @@
-import { Domo } from "../../lib/domo/index.js";
+import { Domo } from "@zyrab/domo";
 
 export default function createHeader() {
   function handleThemeChange(e) {
@@ -6,11 +6,11 @@ export default function createHeader() {
     document.body.classList.toggle("dark");
   }
 
-  const Header = new Domo("header")
+  const Header = Domo("header")
     .cls("header")
-    .chld([
-      new Domo("h2").txt("Parsect").build(),
-      new Domo("Span")
+    .child([
+      Domo("h2").txt("Parsect").build(),
+      Domo("Span")
         .css({ cursor: "pointer" })
         .cls("material-symbols-outlined")
         .txt("clear_day")
