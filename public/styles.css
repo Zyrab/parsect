@@ -40,7 +40,7 @@ header {
   justify-content: space-between;
   align-items: center;
   background-color: var(--color-pre-primary);
-  padding: 0 10vw;
+  padding: 0.4rem 10vw;
 }
 
 h2 {
