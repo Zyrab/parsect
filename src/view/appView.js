@@ -1,7 +1,7 @@
 import { Domo } from "@zyrab/domo";
 import parseSVG from "../parser/parseSVG.js";
 
-import createUploadView from "./UploadView.js";
+import createUploadView from "./uploadView.js";
 import createLoader from "../ui/loader.js";
 import createDisplayView from "./displayView.js";
 
