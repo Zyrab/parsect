@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "build": "esbuild public/index.js --minify --bundle --outfile=public/index.min.js"
+    "build": "esbuild public/index.js --minify --bundle --outfile=public/index.js"
   },
   "devDependencies": {
     "esbuild": "^0.19.0"
