@@ -1,4 +1,5 @@
 import parseTransform from "./parseTransform.js";
+
 export default function flattenShapes(
   elements,
   inheritedTransform = new DOMMatrix()
@@ -9,16 +10,17 @@ export default function flattenShapes(
     if (el.nodeType !== Node.ELEMENT_NODE) continue;
 
     const ownTransform = parseTransform(el.getAttribute("transform"));
-
-    const hasOwnTransform = ownTransform && !isIdentityMatrix(ownTransform);
+    const hasOwnTransform = ownTransform && !ownTransform.isIdentity;
     const combinedTransform = hasOwnTransform
       ? inheritedTransform.multiply(ownTransform)
       : inheritedTransform;
 
-    if (el.tagName.toLowerCase() === "g") {
-      result.push(...flattenShapes(Array.from(el.children), combinedTransform));
+    const tag = el.tagName.toLowerCase();
+
+    if (tag === "g") {
+      result.push(...flattenShapes(el.children, combinedTransform));
     } else {
-      if (isIdentityMatrix(combinedTransform)) {
+      if (combinedTransform.isIdentity) {
         el.removeAttribute("transform");
       } else {
         el.setAttribute("transform", formatTransform(combinedTransform));
@@ -30,16 +32,9 @@ export default function flattenShapes(
   return result;
 }
 
-function isIdentityMatrix(matrix) {
-  return (
-    matrix.a === 1 &&
-    matrix.b === 0 &&
-    matrix.c === 0 &&
-    matrix.d === 1 &&
-    matrix.e === 0 &&
-    matrix.f === 0
-  );
-}
 function formatTransform(m) {
-  return `matrix(${m.a}, ${m.b}, ${m.c}, ${m.d}, ${m.e}, ${m.f})`;
+  const fmt = (n) => Number(n.toFixed(4));
+  return `matrix(${fmt(m.a)}, ${fmt(m.b)}, ${fmt(m.c)}, ${fmt(m.d)}, ${fmt(
+    m.e
+  )}, ${fmt(m.f)})`;
 }
