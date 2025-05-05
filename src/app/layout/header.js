@@ -20,7 +20,7 @@ export default function createHeader() {
         .css({ display: "flex", gap: "0.1rem", alignItems: "center" })
         .child([
           Domo("img").css({ width: "25px", height: "25px" }).attr({
-            src: "/public/assets/parsect.png",
+            src: "/assets/parsect.png",
             alt: "parsect Logo",
           }),
           Domo("h2").txt("Parsect").build(),
