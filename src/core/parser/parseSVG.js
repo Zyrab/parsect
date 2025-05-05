@@ -18,10 +18,10 @@ export default function parseSVG(svgText) {
 
     // Extract the root <svg> element and its 'viewBox' attribute
     const svg = doc.children[0];
-    const viewBox = svg.getAttribute("viewBox");
+    const viewBox = svg.getAttribute("viewBox") || "500 500 0 0";
     // Collect all child elements (shapes) of the SVG
 
-    const shapes = flattenShapes(Array.from(svg.children));
+    const shapes = flattenShapes(svg.children);
     const paths = convertShapesToPaths(shapes, viewBox);
 
     // Return an object containing the viewBox and an array of shapes
