@@ -1,14 +1,19 @@
+const TRANSFORM_REGEX = /(\w+)\(([^)]+)\)/g;
+
 export default function parseTransform(transformStr) {
   if (!transformStr) return null;
 
-  transformStr = transformStr.replace(/\s+/g, " ").trim();
-  const regex = /(\w+)\(([^)]+)\)/g;
+  transformStr = transformStr.trim().replace(/\s+/g, " ");
+
+  const regex = new RegExp(TRANSFORM_REGEX);
   let match;
+  let hasAny = false;
   const matrix = new DOMMatrix();
 
   while ((match = regex.exec(transformStr))) {
-    const [, fn, rawArgs] = match;
-    const args = rawArgs.split(/[\s,]+/).map((arg) => +arg); // '+' is faster than Number()
+    hasAny = true;
+    const fn = match[1];
+    const args = match[2].split(/[\s,]+/).map((arg) => +arg); // '+' is faster than Number()
 
     switch (fn) {
       case "translate": {
@@ -39,9 +44,33 @@ export default function parseTransform(transformStr) {
         }
         break;
       }
-      // Future support (e.g., skewX/skewY) could be added here.
+      case "skewX": {
+        const [angle] = args;
+        const skewMatrix = new DOMMatrix([
+          1,
+          0,
+          Math.tan((angle * Math.PI) / 180),
+          1,
+          0,
+          0,
+        ]);
+        matrix.multiplySelf(skewMatrix);
+        break;
+      }
+      case "skewY": {
+        const [angle] = args;
+        const skewMatrix = new DOMMatrix([
+          1,
+          Math.tan((angle * Math.PI) / 180),
+          0,
+          1,
+          0,
+          0,
+        ]);
+        matrix.multiplySelf(skewMatrix);
+        break;
+      }
     }
   }
-
-  return matrix;
+  return hasAny ? matrix : null;
 }
