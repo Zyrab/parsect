@@ -1,21 +1,39 @@
 <!DOCTYPE html>
-<html>
-  <link rel="stylesheet" href="styles.css">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
-  <link rel="shortcut icon" href="/public/assets/prsct.ico" type="image/x-icon">
-<head>
-    <title>Parsect</title>
-</head>
-<!-- Import Map -->
-<script type="importmap">
-    {
-      "imports": {
-        "@zyrab/domo": "../../node_modules/@zyrab/domo/index.js"
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Parsect – Convert SVG to Canvas with Path2D</title>
+    <meta name="description" content="Parsect is an open-source tool to convert SVG shapes into optimized Canvas drawables using Path2D. Easily render and control shapes on canvas." />
+    <meta name="robots" content="index, follow" />
+    <!-- Open Graph -->
+    <meta property="og:title" content="Parsect – Convert SVG to Canvas with Path2D" />
+    <meta property="og:description" content="Free tool to convert SVG paths into efficient Canvas drawables using Path2D." />
+    <meta property="og:image" content="https://parsect.zyrab.dev/assets/og-image.png" />
+    <meta property="og:url" content="https://parsect.zyrab.dev" />
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,200..800;1,200..800&display=swap" />
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="/public/assets/parsect.ico" type="image/x-icon">
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="styles.css" media="print" onload="this.media='all'">
+    <!-- Permissions -->
+    <meta http-equiv="Permissions-Policy" content="interest-cohort=()" />
+  </head>
+  <body id="app">
+    <!-- Import Map -->
+    <script type="importmap">
+      {
+        "imports": {
+          "@zyrab/domo": "../../node_modules/@zyrab/domo/index.js"
+        }
       }
-    }
-  </script>
-<body id="app">
-    <script type="module" src="index.js"></script>
-</body>
-
+    </script>
+    <script type="module" src="index.js" defer></script>
+  </body>
 </html>

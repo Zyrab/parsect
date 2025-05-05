@@ -1,13 +1,12 @@
-@import url('https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,200..800;1,200..800&display=swap');
-
 :root {
   --ff: "Karla", sans-serif;
-  --h2: 500 1rem var(--ff);
+  --primary: 500 1rem var(--ff);
+  --regular: 500 0.8rem var(--ff);
   --color-primary: hsl(213, 50%, 90%);
   --color-pre-primary: hsl(213, 50%, 95%);
   --color-secondary: hsl(213, 50%, 10%);
   --color-accent: hsl(218, 80%, 20%);
-  --color-tertiary: hsl(0, 80%, 30%);
+  --color-tertiary: hsl(170, 100%, 39%);
   --color-hover: hsl(218, 80%, 80%);
 }
 
@@ -16,7 +15,7 @@
   --color-pre-primary: hsl(213, 50%, 15%);
   --color-secondary: hsl(213, 50%, 90%);
   --color-accent: hsl(218, 80%, 80%);
-  --color-tertiary: hsl(0, 80%, 60%);
+  --color-tertiary: hsl(180, 100%, 50%);
   --color-hover: hsl(218, 40%, 60%);
 }
 
@@ -26,6 +25,24 @@
   box-sizing: border-box;
 }
 
+/* For Chrome, Edge, Safari */
+::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--color-accent);
+}
+
+/* Optional: thinner on hover */
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--color-hover);
+}
 body {
   display: flex;
   flex-direction: column;
@@ -34,6 +51,7 @@ body {
   font-family: var(--ff);
   background-color: var(--color-primary);
   color: var(--color-secondary);
+  scrollbar-gutter: stable;
 }
 header {
   display: flex;
@@ -42,9 +60,57 @@ header {
   background-color: var(--color-pre-primary);
   padding: 0.4rem 10vw;
 }
+footer {
+
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.2rem;
+}
+h1{
+  font:300 1.5rem var(--ff);
+  letter-spacing: 0.025rem;
+  margin: 0;
+  text-align: center;
+}
 
 h2 {
-  font: var(--h2);
+  font: var(--primary);
   padding: 0.4rem;
   margin: 0;
+}
+h3 {
+  font:400 2.5rem var(--ff);
+  letter-spacing: 0.025rem;
+  margin: 0;
+  text-align: center;
+}
+p {
+  font: var(--regular);
+  text-align: center;
+}
+a {
+  text-decoration: none;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color:var(--color-accent);
+  font-feature-settings: "liga" 1, "dlig" 1;
+  transition: all .5sease-in-out;
+}
+a:hover {
+  text-decoration-line: underline;
+  text-decoration-style: solid;
+  text-decoration-color: var(--color-tertiary);  
+  text-decoration-thickness: .15em;
+  text-underline-offset: .1em;
+  -webkit-text-decoration-thickness: .15em;
+  -webkit-text-underline-offset: .3em;
+  -webkit-text-decoration-line: underline;
+  -webkit-text-decoration-style: solid;
+  -webkit-text-decoration-color: var(--color-tertiary);
+  transition: all .5sease-in-out;
+}
+.hilight {
+  color: var(--color-hover);
 }
