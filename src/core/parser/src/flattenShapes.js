@@ -1,10 +1,12 @@
 import parseTransform from "./parseTransform.js";
+import convertShapeToPath from "./convertShapesToPaths.js";
 
 export default function flattenShapes(
   elements,
   inheritedTransform = new DOMMatrix()
 ) {
-  const result = [];
+  const shapes = [];
+  const paths = [];
 
   for (const el of elements) {
     if (el.nodeType !== Node.ELEMENT_NODE) continue;
@@ -18,18 +20,19 @@ export default function flattenShapes(
     const tag = el.tagName.toLowerCase();
 
     if (tag === "g") {
-      result.push(...flattenShapes(el.children, combinedTransform));
+      shapes.push(...flattenShapes(el.children, combinedTransform));
     } else {
       if (combinedTransform.isIdentity) {
         el.removeAttribute("transform");
+        convertShapeToPath(tag, paths, null);
       } else {
         el.setAttribute("transform", formatTransform(combinedTransform));
       }
-      result.push(el);
+      shapes.push(el);
     }
   }
 
-  return result;
+  return { shapes, paths };
 }
 
 function formatTransform(m) {

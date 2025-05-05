@@ -1,5 +1,5 @@
-import convertShapesToPaths from "./convertShapesToPaths.js";
-import flattenShapes from "./flattenShapes.js";
+import convertShapesToPaths from "./src/convertShapesToPaths.js";
+import flattenShapes from "./src/flattenShapes.js";
 /**
  * Parses an SVG string into its viewBox and shapes.
  * @param {string} svgText - The raw SVG markup as a string.

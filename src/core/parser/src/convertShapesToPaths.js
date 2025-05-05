@@ -1,39 +1,26 @@
 import parseTransform from "./parseTransform.js";
 import applyTransformToPath from "./applyTransform.js";
 import getStyleAttributes from "./getStyleAttributes.js";
-export default function convertShapesToPaths(elements, viewBox) {
-  const paths = [
-    {
-      svg: {
-        width: viewBox.split(" ")[2],
-        height: viewBox.split(" ")[3],
-        viewBox,
-      },
-    },
-  ];
-  for (const el of elements) {
-    if (el.nodeType !== Node.ELEMENT_NODE) continue;
-    if (toSkip[el.tagName.toLowerCase()]) {
-      console.warn("skipped shape", el.tagName.toLowerCase());
-      continue;
-    }
 
-    const converter = shapeConverters[el.tagName.toLowerCase()];
-
-    if (!converter) return;
-
-    const d = converter(el);
-
-    if (!d) return;
-
-    const matrix = parseTransform(el.getAttribute("transform"));
-    const transformedD = applyTransformToPath(d, matrix);
-
-    const styles = getStyleAttributes(el);
-    const newPah = { path: transformedD, ...styles };
-    paths.push(newPah);
+export default function convertShapeToPath(el, paths, matrix) {
+  if (toSkip[tag]) {
+    console.warn("skipped shape", tag);
+    return;
   }
-  return paths;
+
+  const converter = shapeConverters[tag];
+
+  if (!converter) return;
+
+  const d = converter(el);
+
+  if (!d) return;
+
+  const transformedD = applyTransformToPath(d, matrix);
+
+  const styles = getStyleAttributes(el);
+  const newPah = { path: transformedD, ...styles };
+  paths.push(newPah);
 }
 
 const shapeConverters = {
@@ -94,7 +81,7 @@ function convertPoly(el) {
     d += ` L${coords[i]},${coords[i + 1]}`;
   }
 
-  return el.tagName.toLowerCase() === "polygon" ? d + " Z" : d;
+  return tag === "polygon" ? d + " Z" : d;
 }
 
 function num(el, name, fallback = 0) {
