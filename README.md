@@ -1,28 +1,31 @@
 # Parsect
 
-**Parsect** is a utility for converting SVGs into structured, optimized `Path2D` instructions for the HTML5 Canvas API.
+**Parsect** is an SVG-to-Canvas converter focused on clarity, performance, and control.  
+It parses raw SVG markup and converts shapes, styles, and transforms into structured JSON that can be drawn using the Canvas `Path2D` API.
 
-It reads raw SVG markup, parses all shapes and styles, and produces a JSON representation that can be rendered with full visual fidelity using Canvas. This tool is meant to be fast, understandable, and composable—useful for rendering, optimizing, or building editors (like [SVecter](https://github.com/Zyrab/SVecter)).
-
----
-
-## ✨ What It Does
-
-- Parses SVG strings or files into structured JSON
-- Supports common shape types: `path`, `rect`, `circle`, `line`, `ellipse`, `polygon`, `polyline`
-- Handles styles like `fill`, `stroke`, `opacity`, gradients (linear)
-- Converts each shape into Canvas-friendly `Path2D` commands
-- Includes a debug view for visualizing shapes individually
+Built to serve developers who want clean, direct rendering without bloated libraries or black-box behavior.
 
 ---
 
-## 🧠 Why I Built It
+## 🚀 Why Parsect?
 
-I wanted to use SVG art in a canvas-based game but I needed full control over how things are drawn, styled, optimized, and eventually _edited_.  
-SVG is great, but canvas is faster for interactive environments.
+Most SVGs are bloated. Most renderers are too generic.
 
-So instead of relying on black-box libraries, I wrote my own parser:  
-**Transparent, hackable, and focused on devs who want to understand their drawing pipeline.**
+Parsect focuses on **canvas-first SVG rendering**, optimized for games, apps, or visual tools where performance and predictability matter.  
+It converts only what you need—shapes, paths, styles—and gives you full control over how they render.
+
+---
+
+## ✨ Features
+
+- Converts SVG into structured JSON (shapes + styles)
+- Outputs Canvas `Path2D` instructions
+- Supports:
+  - `path`, `rect`, `circle`, `ellipse`, `line`, `polygon`, `polyline`
+  - `fill`, `stroke`, `opacity`, transforms
+  - Linear gradients
+- Skips unnecessary nodes for cleaner output
+- Web-based visual tool: [parsect.zyrab.dev](https://parsect.zyrab.dev)
 
 ---
 
@@ -45,58 +48,72 @@ import { parseSVG, toPath2D, drawShape } from "./parsect/index.js";
 const raw = `<svg viewBox="...">...</svg>`;
 
 // Step 1: Parse it
-const { paths, viewbox } = parseSVG(raw);
+const { paths } = parseSVG(raw);
 
 // Step 2: convert and cache paths and stylings
-const shape = toPath2D({ path, viewbox });
+const { dims, shapes } = toPath2D(path);
+
+// shapes dimenstions that is very usfull with transformation and scaling
+const width = dims.w;
+const heigth = dims.h;
 
 // step 3: in canvas u can draw using
 drawShape(ctx, shape);
 ```
 
-🧪 Example
-Coming soon: A full demo repo with live visual rendering and dev tools.
-Until then, check out the /examples folder for sample input and output.
+---
 
-🗂 Project Structure
-bash
-Copy code
+## Project Structure
+
+```bash
 /parsect
-├── parser/ # SVG -> JSON converter
-├── renderer/ # JSON -> Canvas Path2D
-├── debug/ # Utilities to visualize each shape separately
-└── utils/ # Style parsing, gradient handling, etc.
-🔮 Roadmap
-Add <g> group + transform support
+├── parser/       # → SVG -> JSON
+├── renderer/     # → JSON -> Path2D
+├── utils/        # → Gradient/style helpers
+├── debug/        # → Shape isolators
+└── index.js      # → Main export
+```
 
-Improve gradient fidelity + edge cases
+---
 
-Optimize merging logic for large SVGs
+## Roadmap
 
-Create web-based visual inspector
+Chek to do file for to see where we are now
 
-Publish to NPM
+→ [Here](TODO)
 
-🛠 Built With
-JavaScript (vanilla)
+---
 
-Canvas API
+## Built With
 
-Passion for visuals and structured chaos
+- Vanilla JS
+- Canvas API
+- Lots of SVG specs
+- Curiosity & obsession with clean visual pipelines
 
-🙋‍♂️ Who Made This?
-Hi, I’m Zura.
+---
+
+## Who Made This?
+
+Hi, I’m Zyrab.
+
 I build tools, engines, and educational stuff—sometimes for kids, sometimes for devs like you.
-This project is part of a larger effort to build SVecter: a 2D canvas engine with SVG editing support.
+This project is part of a larger effort to build [SVecter](https://github.com/Zyrab/SVecter): a 2D canvas game engine with SVG editing support.
 
-Check out:
+- [Zyrab.dev](https://zyrab.dev)
+- [Blogs](https://zyrab.dev/blog)
 
-🌐 zyrab.dev
+---
 
-📚 Blogs
+## Contributing
 
-🐛 Unusual Bugs
+Pull requests are welcome!
+If you're into optimization, graphics tooling, or just curious about SVG internals, feel free to help.
 
-📬 Contributing
-Pull requests are welcome. If you find bugs, weird edge cases, or have ideas to improve the structure or API, feel free to open an issue or PR.
-Keep it clean. Keep it composable. Keep it fun.
+→ [Read the Contributing Guide](CONTRIBUTING).
+
+---
+
+## License
+
+[MIT License](LICENSE)

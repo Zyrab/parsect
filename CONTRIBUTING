@@ -1,0 +1,46 @@
+# Contributing to Parsect
+
+Hey—thanks for checking out Parsect.
+
+Parsect is a tool for converting SVGs into canvas drawables. It parses SVGs, extracts shape data, applies transforms, and generates optimized JSON that can be used with `Path2D` for high-performance rendering.
+
+It started as a personal need—I wanted to use SVGs on canvas for their scalability, and I care _a lot_ about optimization. Eventually, I realized how bloated most SVGs are. So now, Parsect’s goals include not just converting—but cleaning and optimizing SVGs specifically for canvas use.
+
+### Where It Stands
+
+- It handles paths, basic shapes, and transformations.
+- Still missing: `mask`, `clipPath`, `filter`, and complex arc transforms.
+- Lots of room to improve SVG parsing, shape merging, and cleanup.
+
+This project isn’t about supporting everything—just doing one thing extremely well: **efficiently converting clean SVGs into fast canvas-ready data.**
+
+---
+
+## How You Can Contribute
+
+- **Ideas** — Feature suggestions or UX improvements? Open an issue.
+- **Bugs** — Found something broken or unsupported? Report or patch it.
+- **Improvements** — Better parsing logic, smarter transform handling, or general code cleanup? Jump in.
+
+### Ground Rules
+
+- Keep it focused on canvas-first use cases.
+- No external dependencies.
+- Clean, readable logic > clever hacks.
+- If you're unsure, ask before rewriting core parts.
+- If it fits the vision, I’ll probably merge it.
+
+---
+
+## Dev Notes
+
+- Parser and renderer will be separated into two npm packages (`parsect-parser` and `parsect-renderer`) soon.
+- The live tool is hosted at [parsect.zyrab.dev](https://parsect.zyrab.dev).
+- The web tool will eventually include:
+  - Shape filtering
+  - Optimization UI (merge/discard shapes)
+  - Highlight unsupported elements visually
+
+If you're passionate about SVG, Canvas, optimization, or tooling—this might be your thing.
+
+Thanks for taking the time to read. Contributions are welcome anytime.

@@ -1,52 +1,116 @@
 # 🛠️ TODO - Parsect
 
-## ✅ Implemented
+---
+
+## ✅ Completed Features
+
 - [x] Copy/export of current canvas state
 - [x] Dark and Light mode support
 - [x] SVG `<g>` group support
 - [x] SVG `<transform>` support
 - [x] SVG `<linearGradient>` support
-- [x] simple shapes (`<rect>`, `<circle>`, `<path>`, `<polygon>`, `<polyline> `, `<line>` and `<ellipse>`) support
-- [x] svg `<style>`, `<fill>`, `<stroke>` , `<stroke-width>` and `<opacity>` support
-- [x] `<path d="...">` conversion to `Path2D`
+- [x] Basic SVG shapes (`<rect>`, `<circle>`, `<path>`, `<polygon>`, `<polyline>`, `<line>`, `<ellipse>`) support
+- [x] SVG `<style>`, `<fill>`, `<stroke>`, `<stroke-width>`, and `<opacity>` support
+- [x] `<path d="...">` to `Path2D` conversion
+
+---
 
 ## 🐞 Bug Fixes
+
 - [ ] Fix transformation application issues on arc commands
 
-## ♻️ Refactoring & Code Quality
+---
+
+## ♻️ Core Refactoring & Code Quality
+
 - [ ] Refactor core logic for readability and modularity
 - [ ] Clean up rendering pipeline for better maintainability
 
-## 🚀 Features & Enhancements
-- [ ] Add support for  `<radialGradient>`
+---
+
+## 🚀 Parsing & Rendering Enhancements
+
+- [ ] Add support for `<radialGradient>`
 - [ ] Add support for SVG `<filter>` elements
-- [ ] Allow merging of shapes with identical styles into a single `Path2D`
-- [ ] Allow rendering only the selected SVG shape in the inspector
-- [ ] Show visual feedback for unsupported SVG elements in inspector
-
-## 💅 UI / UX Improvements
-- [ ] Fix scroll indicator styling and behavior
-- [ ] Apply custom UI styles for a more polished interface
-- [ ] Add helpful links, tooltips, and contextual texts to improve usability
-
-## 🧪 Testing & Validation
-- [ ] Build unit tests for SVG parsing and rendering
 - [ ] Implement basic SVG syntax validator (optional strict mode)
 
-## 📊 Performance & Analytics
-- [ ] Implement performance profiling tools for canvas render (esp. with filters)
-- [ ] Track unique visitors (simple self-hosted analytics)
-- [ ] Plan for future analytics (render time, shape complexity, memory usage)
+---
 
-## 🎞️ Future Feature: Animation & Frame Extraction
-- [ ] Add support for parsing basic SVG animations (`<animate>`, `<animateTransform>`, etc.)
-- [ ] Allow user to set FPS (e.g., 10 FPS) and extract frame-based shape maps
-- [ ] Generate optimized maps for only the shapes that change between frames
-- [ ] Treat these maps like sprite sheets for playback or export
+## 🎨 Shape Display, Inspector & Interaction
+
+- [ ] Display all SVG shapes on the right side with:
+  - Type (Path, Rect, Circle, etc.)
+  - Fill, Stroke, Path complexity
+- [ ] Add click-to-select functionality for each shape
+- [ ] Allow rendering only the selected SVG shape
+- [ ] Show visual feedback for unsupported SVG elements
+
+---
+
+## ➕ Shape Merging and Discarding
+
+- [ ] Add "Merge" button next to each shape
+- [ ] Auto-detect similar paths (fill, stroke, position)
+- [ ] Merge similar paths into a single optimized `Path2D`
+- [ ] Add "Discard" button for redundant/invisible shapes
+- [ ] Preview changes before discarding
+- [ ] Confirm discards for important shapes
+
+---
+
+## ⚠️ Shape Size & Optimization Warnings
+
+- [ ] Warn when a shape exceeds a size threshold
+- [ ] Suggest optimizations for large, redundant, or complex shapes
+- [ ] Allow manual path simplification
+
+---
+
+## 💅 UI / UX Improvements
+
+- [ ] Fix scroll indicator styling and behavior
+- [ ] Apply custom UI styles for polished interface
+- [ ] Add helpful links, tooltips, and contextual texts
+- [ ] Implement undo/redo functionality
+
+---
+
+## 📈 Performance, Analytics & Debugging
+
+- [ ] Implement performance profiling (render times, filters)
+- [ ] Add simple self-hosted analytics (unique visitors)
+- [ ] Plan future analytics (shape complexity, memory usage)
+- [ ] Add a debug panel (show transformation matrices, render state)
+
+---
+
+## 🧪 Testing & Validation
+
+- [ ] Test tool with simple and complex SVGs
+- [ ] Ensure merging and discarding maintain visual integrity
+- [ ] Validate tool's performance on large SVG files
+
+---
+
+## 📚 Documentation
+
+- [ ] Write basic user documentation:
+  - How to merge/discard shapes
+  - When and why optimization suggestions appear
+
+---
+
+## 🎞️ Future Features: Animation & Frame Extraction
+
+- [ ] Parse basic SVG animations (`<animate>`, `<animateTransform>`, etc.)
+- [ ] Allow setting FPS and extract frames
+- [ ] Generate optimized sprite-like maps from frames
+- [ ] Export selected frames as SVG/PNG/web formats
+- [ ] Add keyboard shortcuts (zoom, step frame, etc.)
+
+---
 
 ## 💡 Ideas / Exploratory
-- [ ] Add a debug panel to show transformation matrices and state
-- [ ] SVG structure tree view with collapse/expand for easier inspection
-- [ ] Save/load custom user settings (UI, view state, etc.)
-- [ ] Export selected frames as SVG, PNG, or web-friendly format
-- [ ] Add keyboard shortcuts for common actions (zoom, step frame, etc.)
+
+- [ ] SVG structure tree view (collapse/expand)
+- [ ] Save/load custom user settings (UI, view state)
