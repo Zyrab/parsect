@@ -24,7 +24,7 @@ export default function createInspector(shapesJson, fileName, getFile) {
     Domo().css(styles[style]).child(childs).build();
 
   return Domo()
-    .css(styles.inspector)
+    .cls("inspector-display")
     .child([
       wrapper(
         [
@@ -60,16 +60,7 @@ export default function createInspector(shapesJson, fileName, getFile) {
 }
 
 const styles = {
-  inspector: {
-    width: "20%",
-    height: "100%",
-    overflow: "auto",
-    padding: "0.4rem",
-    backgroundColor: "var(--color-pre-primary)",
-    gap: "2rem",
-    display: "flex",
-    flexDirection: "column",
-  },
+  inspector: {},
   wrapper: {
     display: "flex",
     justifyContent: "center",

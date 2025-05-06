@@ -6,19 +6,17 @@ import createLoader from "../layout/loader.js";
 import createDisplayView from "./displayView.js";
 
 export default function createAppView() {
-  const view = Domo()
-    .css(styles.view)
-    .child([
-      Domo()
-        .css(styles.titleWrapper)
-        .child([
-          Domo("h3").txt("Easily Render Any SVG on Canvas"),
-          Domo("h1").txt(
-            "Convert SVG files to JSON and render them directly on canvas using Path2D"
-          ),
-        ]),
-      createUploadView(getFile),
-    ]);
+  const view = Domo("main").child([
+    Domo()
+      .css(styles.titleWrapper)
+      .child([
+        Domo("h3").txt("Easily Render Any SVG on Canvas"),
+        Domo("h1").txt(
+          "Convert SVG files to JSON and render them directly on canvas using Path2D"
+        ),
+      ]),
+    createUploadView(getFile),
+  ]);
   async function getFile(file) {
     const fileName = file.name.replace(/\.[^/.]+$/, "");
 
@@ -35,14 +33,6 @@ export default function createAppView() {
 }
 
 const styles = {
-  view: {
-    height: "95%",
-    width: "100%",
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    justifyContent: "center",
-  },
   titleWrapper: {
     display: "flex",
     flexDirection: "column",

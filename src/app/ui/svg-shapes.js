@@ -3,15 +3,14 @@ import createIconText from "./icon-text.js";
 
 export default function createSvgShapes({ viewBox, shapes }) {
   return Domo()
-    .css(styles.container)
+    .cls("svg-display")
     .child([
       createIconText("category", "Shapes Inspector"),
       Domo()
-        .css(styles.svgWrapper)
+        .cls("svg-shapes")
         .child([
           shapes.map((shape) => {
             return DSVG("svg", "http://www.w3.org/2000/svg")
-              .css(styles.svg)
               .attr({ viewBox })
               .child([shape.cloneNode(true)])
               .build();
@@ -21,29 +20,3 @@ export default function createSvgShapes({ viewBox, shapes }) {
     ])
     .build();
 }
-
-const styles = {
-  container: {
-    width: "24%",
-    height: "100%",
-    padding: "0.4rem",
-    gap: "0.4rem",
-    display: "flex",
-    flexDirection: "column",
-    backgroundColor: "var(--color-pre-primary)",
-  },
-  svgWrapper: {
-    direction: "rtl",
-    overflow: "auto",
-    display: "flex",
-    flexWrap: "wrap",
-    alignContent: "start",
-    width: "100%",
-    height: "100%",
-    gap: "0.4rem",
-  },
-  svg: {
-    width: "48%",
-    backgroundColor: "var(--color-hover)",
-  },
-};

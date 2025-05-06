@@ -5,15 +5,7 @@ import { toPath2D, drawShape } from "../../core/render/index.js";
 
 export default function createCanvasShapes(shapesJson) {
   const canvas = Domo("canvas").id("canvas");
-  const view = Domo().css({
-    width: "60%",
-    height: "100%",
-    display: "flex",
-    flexDirection: "column",
-    padding: "0.4rem",
-    gap: "0.4rem",
-    background: "var(--color-pre-primary)",
-  });
+  const view = Domo().cls("canvas-display");
 
   requestAnimationFrame(() => initCanvas(canvas.element, shapesJson));
 
@@ -26,20 +18,27 @@ export default function createCanvasShapes(shapesJson) {
 }
 
 function initCanvas(canvas, shapesJson) {
-  const ctx = canvas.getContext("2d");
   const dpr = window.devicePixelRatio || 1;
-  canvas.width = canvas.parentElement.offsetWidth * dpr;
-  canvas.height = canvas.parentElement.offsetHeight * dpr;
+  const rect = canvas.parentElement.getBoundingClientRect();
+
+  canvas.width = rect.width * dpr;
+  canvas.height = rect.height * dpr;
+
+  canvas.style.width = `${rect.width}px`;
+  canvas.style.height = `${rect.height}px`;
+
+  const ctx = canvas.getContext("2d");
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0); // scale everything by dpr
 
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   const { dims, shapes } = toPath2D(shapesJson);
 
   drawGrid(ctx);
-  const scale = canvas.width / (dims.w * 3);
+  const scale = rect.width / (dims.w * 3);
   ctx.save();
   ctx.translate(
-    (ctx.canvas.width - dims.w * scale) / 2,
-    (ctx.canvas.height - dims.h * scale) / 2
+    (rect.width - dims.w * scale) / 2,
+    (rect.height - dims.h * scale) / 2
   );
   ctx.scale(scale, scale);
   drawShape(ctx, shapes);
