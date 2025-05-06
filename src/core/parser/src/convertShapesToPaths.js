@@ -1,8 +1,7 @@
-import parseTransform from "./parseTransform.js";
 import applyTransformToPath from "./applyTransform.js";
 import getStyleAttributes from "./getStyleAttributes.js";
 
-export default function convertShapeToPath(el, paths, matrix) {
+export default function convertShapeToPath(el, tag, paths, matrix) {
   if (toSkip[tag]) {
     console.warn("skipped shape", tag);
     return;
@@ -81,7 +80,7 @@ function convertPoly(el) {
     d += ` L${coords[i]},${coords[i + 1]}`;
   }
 
-  return tag === "polygon" ? d + " Z" : d;
+  return el.tagName.toLowerCase() === "polygon" ? d + " Z" : d;
 }
 
 function num(el, name, fallback = 0) {

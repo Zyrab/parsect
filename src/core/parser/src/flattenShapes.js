@@ -20,13 +20,20 @@ export default function flattenShapes(
     const tag = el.tagName.toLowerCase();
 
     if (tag === "g") {
-      shapes.push(...flattenShapes(el.children, combinedTransform));
+      const { shapes: nestedShapes, paths: nestedPaths } = flattenShapes(
+        el.children,
+        combinedTransform
+      );
+      shapes.push(...nestedShapes);
+      paths.push(...nestedPaths);
     } else {
       if (combinedTransform.isIdentity) {
         el.removeAttribute("transform");
-        convertShapeToPath(tag, paths, null);
+        convertShapeToPath(el, tag, paths, null);
       } else {
-        el.setAttribute("transform", formatTransform(combinedTransform));
+        const transform = formatTransform(combinedTransform);
+        el.setAttribute("transform", transform);
+        convertShapeToPath(el, tag, paths, combinedTransform);
       }
       shapes.push(el);
     }

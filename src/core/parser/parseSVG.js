@@ -1,4 +1,3 @@
-import convertShapesToPaths from "./src/convertShapesToPaths.js";
 import flattenShapes from "./src/flattenShapes.js";
 /**
  * Parses an SVG string into its viewBox and shapes.
@@ -6,29 +5,27 @@ import flattenShapes from "./src/flattenShapes.js";
  * @returns {Object} An object containing the viewBox and an array of shapes.
  */
 export default function parseSVG(svgText) {
-  try {
-    // Parse the SVG string into a DOM document
-    const doc = new DOMParser().parseFromString(svgText, "image/svg+xml");
+  // Parse the SVG string into a DOM document
+  const doc = new DOMParser().parseFromString(svgText, "image/svg+xml");
 
-    // Check for any parsing errors in the SVG
-    const parserError = doc.querySelector("parsererror");
-    if (parserError) {
-      throw new Error("Invalid SVG content");
-    }
-
-    // Extract the root <svg> element and its 'viewBox' attribute
-    const svg = doc.children[0];
-    const viewBox = svg.getAttribute("viewBox") || "500 500 0 0";
-    // Collect all child elements (shapes) of the SVG
-
-    const shapes = flattenShapes(svg.children);
-    const paths = convertShapesToPaths(shapes, viewBox);
-
-    // Return an object containing the viewBox and an array of shapes
-    return { viewBox, shapes, paths };
-  } catch (error) {
-    // Log error message if the SVG parsing fails
-    console.error("Error parsing SVG:", error.message);
-    return {}; // Return empty object on failure to avoid returning an array when it should be an object
+  // Check for any parsing errors in the SVG
+  const parserError = doc.querySelector("parsererror");
+  if (parserError) {
+    throw new Error("Invalid SVG content");
   }
+
+  // Extract the root <svg> element and its 'viewBox' attribute
+  const svg = doc.children[0];
+  const viewBox = svg.getAttribute("viewBox") || "500 500 0 0";
+  // Collect all child elements (shapes) of the SVG
+
+  const { shapes, paths } = flattenShapes(svg.children);
+  paths.unshift({
+    svg: {
+      width: viewBox.split(" ")[2],
+      height: viewBox.split(" ")[3],
+      viewBox,
+    },
+  });
+  return { viewBox, shapes, paths };
 }
