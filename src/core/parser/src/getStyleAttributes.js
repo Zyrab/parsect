@@ -43,7 +43,9 @@ export default function getStyleAttributes(element) {
       if (!styles.hasOwnProperty(attr)) styles[attr] = value;
     }
   });
-
+  if (Object.keys(styles).length === 0) {
+    styles.fill = "000";
+  }
   return styles;
 }
 
