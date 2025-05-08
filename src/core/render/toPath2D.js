@@ -57,8 +57,6 @@ const toPath2D = (shapeData) => {
   return { shapes, dims }; // Return the cached shapes and the center of the SVG
 };
 
-export default toPath2D;
-
 function hexToRgba(hex, opacity = 1) {
   if (!hex.startsWith("#")) return hex; // already rgba, hsl, or named color
 
@@ -79,3 +77,5 @@ function hexToRgba(hex, opacity = 1) {
 
   return `rgba(${r}, ${g}, ${b}, ${opacity})`;
 }
+
+export default toPath2D;
