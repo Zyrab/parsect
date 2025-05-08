@@ -1,5 +1,6 @@
 import { Domo } from "@zyrab/domo";
 import createButton from "../ui/button.js";
+import createFileInput from "../ui/file-input.js";
 
 export default function createUploadView(getFile) {
   function handleDragOver(e, show = true, drop = false) {
@@ -15,14 +16,7 @@ export default function createUploadView(getFile) {
     }
   }
 
-  const fileInput = Domo("input")
-    .attr({ type: "file", accept: ".svg" })
-    .css({ display: "none" })
-    .on("change", (e) => {
-      const file = e.target.files[0];
-      getFile(file);
-    })
-    .build();
+  const fileInput = createFileInput(getFile);
 
   const contentWrapper = Domo().css(styles.contentWrapper);
   const dropZoneText = Domo("p").txt("Drop !").css(styles.dropZoneText);

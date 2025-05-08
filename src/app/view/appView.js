@@ -27,7 +27,7 @@ export default function createAppView() {
     }
     view.clear().child([createLoader()]);
     const result = parseSVG(svgText);
-    view.clear().child([createDisplayView(result, fileName, getFile)]);
+    view.clear().child([await createDisplayView(result, fileName, getFile)]);
   }
   return view.build();
 }
