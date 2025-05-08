@@ -17,14 +17,14 @@
 
 ## 🐞 Bug Fixes
 
-- [ ] Fix transformation application issues on arc commands
+- [x] Fix transformation application issues on S curve commands
 
 ---
 
 ## ♻️ Core Refactoring & Code Quality
 
-- [ ] Refactor core logic for readability and modularity
-- [ ] Clean up rendering pipeline for better maintainability
+- [x] Refactor core logic for readability and modularity
+- [x] Clean up rendering pipeline for better maintainability
 
 ---
 
@@ -68,8 +68,8 @@
 
 ## 💅 UI / UX Improvements
 
-- [ ] Fix scroll indicator styling and behavior
-- [ ] Apply custom UI styles for polished interface
+- [x] Fix scroll indicator styling and behavior
+- [x] Apply custom UI styles for polished interface
 - [ ] Add helpful links, tooltips, and contextual texts
 - [ ] Implement undo/redo functionality
 
@@ -112,5 +112,4 @@
 
 ## 💡 Ideas / Exploratory
 
-- [ ] SVG structure tree view (collapse/expand)
 - [ ] Save/load custom user settings (UI, view state)
