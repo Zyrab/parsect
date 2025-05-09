@@ -8,7 +8,7 @@ export default async function createDisplayView(
   fileName,
   getFile
 ) {
-  const respCodes = await fetch("/assets/codes.json");
+  const respCodes = await fetch("assets/codes.json");
   const dataCodes = await respCodes.json();
 
   const view = Domo()
