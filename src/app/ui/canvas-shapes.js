@@ -1,7 +1,7 @@
 import { Domo } from "@zyrab/domo";
 import createIconText from "./icon-text.js";
 
-import { toPath2D, drawShape } from "../../core/render/index.js";
+import { toPath2D, drawShape } from "../../core/renderer/index.js";
 
 export default function createCanvasShapes(shapesJson) {
   const canvas = Domo("canvas").id("canvas");
