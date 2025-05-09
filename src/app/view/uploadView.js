@@ -50,7 +50,7 @@ const styles = {
     alignItems: "center",
     justifyContent: "center",
     width: "100%",
-    height: "80vh",
+    height: "69vh",
     position: "relative",
     gap: "1rem",
   },

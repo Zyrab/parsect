@@ -8,7 +8,12 @@ export default function createCodeContainer(code, icon) {
         .css(styles.head)
         .child([
           Domo("span").cls("material-symbols-outlined").txt(icon).build(),
-          Domo("span").css(styles.copy).txt("Copy").build(),
+          Domo("span")
+            .cls("copy-code")
+            .css(styles.copy)
+            .data({ code })
+            .txt("Copy")
+            .build(),
         ]),
       Domo("pre")
         .css(styles.pre)
@@ -31,6 +36,7 @@ const styles = {
   copy: {
     fontSize: "0.8rem",
     alignSelf: "center",
+    cursor: "pointer",
   },
   pre: {
     backgroundColor: "var(--color-primary)",

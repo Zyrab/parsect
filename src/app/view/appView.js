@@ -4,6 +4,7 @@ import parseSVG from "../../core/parser/parseSVG.js";
 import createUploadView from "./uploadView.js";
 import createLoader from "../layout/loader.js";
 import createDisplayView from "./displayView.js";
+import createFooter from "../layout/footer.js";
 
 export default function createAppView() {
   const view = Domo("main").child([
@@ -16,7 +17,9 @@ export default function createAppView() {
         ),
       ]),
     createUploadView(getFile),
+    createFooter(),
   ]);
+
   async function getFile(file) {
     const fileName = file.name.replace(/\.[^/.]+$/, "");
 
@@ -37,5 +40,6 @@ const styles = {
     display: "flex",
     flexDirection: "column",
     gap: "1rem",
+    padding: "2rem 0",
   },
 };

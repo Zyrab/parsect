@@ -1,0 +1,40 @@
+{
+  "name": "@zyrab/parsect-renderer",
+  "version": "0.0.1",
+  "description": "utility functions to create path2ds from preparsed svg and to draw it on canvas. for animation ",
+  "main": "index.js",
+  "type": "module",
+  "exports": {
+    ".": "./index.js"
+  },
+  "files": [
+    "index.js",
+    "drawShape.js",
+    "toPath2D.js"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zyrab/parsect.git"
+  },
+  "keywords": [
+    "svg",
+    "canvas",
+    "html5-canvas",
+    "path2d",
+    "javascript",
+    "svg-parser",
+    "svg-to-canvas",
+    "svg-renderer",
+    "svg-games",
+    "parsect",
+    "svecter",
+    "zyrab"
+  ],
+  "author": "Zyrab",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/zyrab/parsect/issues"
+  },
+  "homepage": "https://github.com/zyrab/parsect#readme",
+  "logo": "https://raw.githubusercontent.com/Zyrab/parsect/refs/heads/main/public/assets/parsect.png"
+}

@@ -49,8 +49,6 @@
 }
 
 body {
-  height: 100vh;
-  overflow: hidden;
   font-family: var(--ff);
   background-color: var(--color-primary);
   color: var(--color-secondary);
@@ -58,13 +56,10 @@ body {
 }
 
 main {
-  width: 100%;
-  height: 100vh;
   padding: 0.4rem;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  justify-content: space-around;
 }
 
 header {
@@ -76,9 +71,6 @@ header {
 }
 
 footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -92,7 +84,20 @@ p {
   text-align: center;
   margin: 0;
 }
-
+button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  padding: 0.5rem 0.5rem;
+  background-color: transparent;
+  color: var(--color-secondary);
+  border: 2px solid var(--color-tertiary);
+}
+button:hover {
+  background-color: var(--color-hover);
+}
 h1 {
   font: 300 1.2rem var(--ff);
   letter-spacing: 0.025rem;
@@ -141,7 +146,7 @@ a:hover {
 .svg-display,
 .canvas-display,
 .inspector-display {
-  height: 100%;
+  height: 93vh;
   padding: 0.4rem;
   display: flex;
   flex-direction: column;
@@ -160,7 +165,7 @@ a:hover {
 .inspector-display {
   width: 20%;
   align-content: center;
-  gap: 1.75rem;
+  gap: 1rem;
 }
 .svg-shapes {
   direction: rtl;
@@ -179,13 +184,7 @@ svg {
   background-color: var(--color-hover);
 }
 @media (max-width: 65.25rem) {
-  main {
-    height: auto;
-    padding: 1.5rem;
-  }
-
   header {
-    flex-direction: column;
     gap: 0.5rem;
     padding: 0.6rem 5vw;
     text-align: center;

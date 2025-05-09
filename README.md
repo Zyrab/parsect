@@ -1,5 +1,7 @@
 # Parsect
 
+![Parsect Logo](./public/assets/parsect.png)
+
 **Parsect** is an SVG-to-Canvas converter focused on clarity, performance, and control.  
 It parses raw SVG markup and converts shapes, styles, and transforms into structured JSON that can be drawn using the Canvas `Path2D` API.
 

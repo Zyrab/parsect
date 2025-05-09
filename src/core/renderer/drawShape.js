@@ -57,7 +57,7 @@ const applyGradient = (ctx, grad) => {
   // Handle radial gradients
   if (grad.type === "radial") {
     return console.warn("Radial gradient not supported yet.");
-    const { cx, cy, r, r2, stops } = grad;
+    const { cx, cy, r1, r2, stops } = grad;
     const gradient = ctx.createRadialGradient(cx, cy, r1, cx, cy, r2);
     stops.forEach((stop) => gradient.addColorStop(stop.offset, stop.color));
     return gradient;

@@ -1,0 +1,17 @@
+# Changelog
+
+## 0.0.1 - Initial Release
+
+### Added
+
+- Utility functions to convert parsed SVG shape data in JSON format into `Path2D` instances.
+- Support for reusing `Path2D` objects for efficient canvas rendering.
+- Rendering logic that applies:
+  - `fill` and `stroke` styles
+  - `linearGradient` support
+  - `opacity` applied directly into fill/stroke color values (RGBA)
+
+### Notes
+
+- Assumes SVG shapes are pre-parsed into JSON format (`shapesJson`).
+- Designed for animation-ready rendering.

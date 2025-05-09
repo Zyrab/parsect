@@ -1,4 +1,9 @@
 {
+  "private": true,
+  "workspaces": [
+    "src/core/renderer",
+    "src/core/converter"
+  ],
   "scripts": {
     "build": "esbuild public/index.js --minify --allow-overwrite --bundle --outfile=public/index.js"
   },
