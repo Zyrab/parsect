@@ -1,7 +1,7 @@
 import { Domo } from "@zyrab/domo";
 
 export default function createIconText(icon, text) {
-  return Domo()
+  return Domo("div")
     .css(styles.wrapper)
     .child([
       Domo("span").cls("material-symbols-outlined").txt(icon).build(),
